@@ -71,18 +71,17 @@ const About: React.FC = () => {
         <TitleUnderline />
         
         <AboutText>
-          I am a passionate Frontend Developer with expertise in creating responsive and user-friendly web applications. My journey in web 
-          development started with HTML, CSS, and JavaScript, and has evolved to include modern frameworks and Web3 technologies.
+          Hi, I am a passionate Software Engineer with a strong foundation in Python, JavaScript, React, and Flask, as well as experience working with SQL databases and modern web development tools.I recently graduated from Moringa School, where I honed my skills in building full-stack applications, problem solving, and collaborating on real-world projects.
         </AboutText>
         
         <AboutText>
-          With a strong foundation in UI/UX principles and a keen eye for design, I strive to create seamless digital experiences that not only 
-          look great but also perform exceptionally well across all devices.
+         I enjoy creating scalable, user-friendly, and efficient software solutions that not only solve problems but also deliver a great user experience. My interests span from frontend development, where I focus on clean design and responsiveness, to backend systems, where I ensure data integrity and performance.
         </AboutText>
         
         <AboutText>
-          My recent focus has been on blockchain technology, particularly Ethereum and Solidity development, where I build decentralized 
-          applications that leverage the power of Web3.
+          Beyond coding, I’m passionate about continuous learning, teamwork, and innovation. I thrive in environments where I can contribute to impactful projects, grow with a team, and apply creative ideas to real challenges.
+
+          When I’m not coding, you’ll probably find me exploring new tech trends, contributing to personal projects, or collaborating on open-source initiatives.
         </AboutText>
 
         <ContactInfo>

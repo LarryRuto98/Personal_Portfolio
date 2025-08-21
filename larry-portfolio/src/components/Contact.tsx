@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Container, Grid, TextField, Button, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Email, Phone, LocationOn, GitHub, Instagram } from '@mui/icons-material';
+import { Email, Phone, LocationOn, GitHub, Instagram, Padding } from '@mui/icons-material';
 
 
 
@@ -30,9 +30,9 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const TitleUnderline = styled(Box)(({ theme }) => ({
-  width: '80px',
+  width: '90px',
   height: '4px',
-  backgroundColor: '#4ade80',
+  backgroundColor: '#3b82f6',
   margin: '0 auto 60px',
 }));
 
@@ -47,7 +47,7 @@ const ContactInfo = styled(Box)(({ theme }) => ({
 const InfoTitle = styled(Typography)(({ theme }) => ({
   fontSize: '1.5rem',
   fontWeight: 600,
-  color: '#4ade80',
+  color: '#3b82f6',
   marginBottom: '20px',
 }));
 
@@ -64,7 +64,12 @@ const ContactItem = styled(Box)(({ theme }) => ({
   gap: '15px',
   marginBottom: '20px',
   '& svg': {
-    color: '#4ade80',
+    boxSizing: 'border-box',
+    width: '30px',
+    height: '30px',
+    color: '#3b82f6Z',
+    borderRadius: '50%',
+    border: "2px solid #3b82f6",
     fontSize: '20px',
     marginTop: '2px',
   },
@@ -83,64 +88,82 @@ const ContactValue = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
+  maxWidth: '60%',
+  minWidth: '2',
+  position: 'relative',
+  left: '400px',
+  bottom: '340px',
   '& .MuiOutlinedInput-root': {
     backgroundColor: '#1a1a1a',
+    borderRadius: '18px',
     '& fieldset': {
       borderColor: '#333333',
+      gap: '40px',
+      
     },
     '&:hover fieldset': {
-      borderColor: '#4ade80',
+      borderColor: '#3b82f6',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#4ade80',
+      borderColor: '#3b82f6',
     },
     '& input, & textarea': {
-      color: '#ffffff',
+      color: 'white',
+      Padding: '9px 8px',
+      fontSize: '0.95rem',
+      backgroundColor: 'transparent',
+      
+      
     },
+    
   },
   '& .MuiInputLabel-root': {
     color: '#a0a0a0',
   },
   '& .MuiInputLabel-root.Mui-focused': {
-    color: '#4ade80',
+    color: '#3b82f6',
   },
+  minHeight: '24px',
   marginBottom: '20px',
 }));
 
 const SubmitButton = styled(Button)(({ theme }) => ({
-  backgroundColor: '#4ade80',
-  color: '#000000',
+  backgroundColor: '#3b82f6',
+  color: 'white',
   padding: '12px 30px',
   fontSize: '16px',
   fontWeight: 600,
+  marginBottom: 0,
   textTransform: 'none',
   borderRadius: '8px',
+  position: 'relative',
+  bottom: '140px',
   '&:hover': {
-    backgroundColor: '#22c55e',
+    backgroundColor: '#1d4ed8',
   },
 }));
 
 const SocialIcons = styled(Box)(({ theme }) => ({
   display: 'flex',
-  gap: '15px',
+  gap: '25px',
   marginTop: '30px',
 }));
 
 const SocialIcon = styled(IconButton)(({ theme }) => ({
   backgroundColor: 'transparent',
-  border: '2px solid #4ade80',
-  color: '#4ade80',
+  border: '2px solid #3b82f6',
+  color: '#white',
   width: '45px',
   height: '45px',
   '&:hover': {
-    backgroundColor: 'rgba(74, 222, 128, 0.1)',
+    backgroundColor: '#3b82f6',
   },
 }));
 
 const Footer = styled(Box)(({ theme }) => ({
-  borderTop: '1px solid #333333',
+  borderTop: '1px solid #3b82f6',
   padding: '40px 0',
-  marginTop: '60px',
+  marginBottom: '10px',
 }));
 
 const FooterContent = styled(Box)(({ theme }) => ({
@@ -148,7 +171,7 @@ const FooterContent = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   flexWrap: 'wrap',
-  gap: '40px',
+  gap: '20px',
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     textAlign: 'center',
@@ -174,18 +197,19 @@ const FooterBrand = styled(Box)(({ theme }) => ({
 
 const FooterNav = styled(Box)(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-  '& button': {
+  flexDirection: 'row',
+  gap: '38px',
+    '& button': {
     color: '#a0a0a0',
     textDecoration: 'none',
-    fontSize: '0.9rem',
+    fontSize: '1.2rem',
     padding: 0,
+    marginTop:"9px",
     minWidth: 'auto',
     textTransform: 'none',
     justifyContent: 'flex-start',
     '&:hover': {
-      color: '#4ade80',
+      color: '#3b82f6',
       backgroundColor: 'transparent',
     },
   },
@@ -195,7 +219,7 @@ const Copyright = styled(Typography)(({ theme }) => ({
   fontSize: '0.9rem',
   color: '#666666',
   textAlign: 'center',
-  marginTop: '20px',
+  
 }));
 
 const Contact: React.FC = () => {
@@ -237,16 +261,14 @@ const Contact: React.FC = () => {
             <ContactInfo>
               <InfoTitle>Contact Information</InfoTitle>
               <InfoDescription>
-                Feel free to reach out to me for any inquiries or opportunities. I'm 
-                always open to discussing new projects, creative ideas, or 
-                opportunities to be part of your vision.
+                I’d love to hear from you! Whether it’s an inquiry, a collaboration, or an exciting opportunity, feel free to reach out. I’m always open to discussing new projects, exploring creative ideas, and contributing my skills to bring your vision to life
               </InfoDescription>
               
               <ContactItem>
                 <Email />
                 <Box>
                   <ContactLabel>Email</ContactLabel>
-                  <ContactValue>rodneyglgi@gmail.com</ContactValue>
+                  <ContactValue>larryruto@gmail.com</ContactValue>
                 </Box>
               </ContactItem>
               
@@ -254,7 +276,7 @@ const Contact: React.FC = () => {
                 <Phone />
                 <Box>
                   <ContactLabel>Phone</ContactLabel>
-                  <ContactValue>+254 79813204</ContactValue>
+                  <ContactValue>+254 798981782</ContactValue>
                 </Box>
               </ContactItem>
               
@@ -267,17 +289,17 @@ const Contact: React.FC = () => {
               </ContactItem>
 
               <SocialIcons>
-                <SocialIcon>
+                <SocialIcon component="a" href="https://github.com/LarryRuto98" target="_blank" aria-label="GitHub">
                   <GitHub />
                 </SocialIcon>
-                <SocialIcon>
+                <SocialIcon component="a" href="https://instagram.com/larry_ruto" target="_blank" aria-label="Instagram">
                   <Instagram />
                 </SocialIcon>
               </SocialIcons>
             </ContactInfo>
           </Grid>
           
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <Box component="form" onSubmit={handleSubmit}>
               <StyledTextField
                 fullWidth
@@ -326,9 +348,9 @@ const Contact: React.FC = () => {
         <Container maxWidth="lg">
           <FooterContent>
             <FooterBrand>
-              <div className="brand">
-                <span className="highlight">LarryThe</span>Dev
-              </div>
+              <Box component="span" sx={{ color: "#3B82F6", fontWeight: "bold" , fontSize: "1.5rem" ,position: "relative", zIndex: 1}}>
+               LarryThe
+              </Box><Box component="span" sx={{fontSize: "1.5rem", fontWeight: "bold"}}>Dev</Box>
               <div className="tagline">FullStack Dev</div>
             </FooterBrand>
             
@@ -341,22 +363,21 @@ const Contact: React.FC = () => {
             </FooterNav>
             
             <SocialIcons>
-              <SocialIcon>
+              <SocialIcon component="a" href="https://github.com/LarryRuto98" target="_blank" aria-label="GitHub">
                 <GitHub />
               </SocialIcon>
-              <SocialIcon>
+              <SocialIcon component="a" href="https://instagram.com/larry_ruto" target="_blank" aria-label="Instagram">
                 <Instagram />
               </SocialIcon>
             </SocialIcons>
           </FooterContent>
           
           <Copyright>
-            © 2023 Rodney. All Rights Reserved.
+            © 2025 Larry. All Rights Reserved.
           </Copyright>
         </Container>
       </Footer>
     </ContactSection>
   );
 };
-
 export default Contact;

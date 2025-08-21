@@ -31,7 +31,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 const TitleUnderline = styled(Box)(({ theme }) => ({
   width: '80px',
   height: '4px',
-  backgroundColor: '#4ade80',
+  backgroundColor: '#3b82f6',
   margin: '0 auto 60px',
 }));
 
@@ -39,20 +39,26 @@ const ProjectCard = styled(Card)(({ theme }) => ({
   backgroundColor: '#1a1a1a',
   border: '1px solid #333333',
   borderRadius: '12px',
-  height: '100%',
+  height: '420px',
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
+  position: 'relative',
+  justifyContent: 'center',
+  alignItems: 'center',
   transition: 'transform 0.3s ease, border-color 0.3s ease',
   '&:hover': {
     transform: 'translateY(-5px)',
-    borderColor: '#4ade80',
+    borderColor: '#3b82f6',
   },
 }));
 
 const ProjectImage = styled(Box)(({ theme }) => ({
-  height: '200px',
+  height: '300px',
+  backgroundImage: `url ("/WellHall_LandingPage.jpg")`,
+  backgroundSize: 'cover', // Replace with actual image path
   backgroundColor: '#0f0f0f',
-  borderBottom: '2px solid #4ade80',
+  borderBottom: '2px solid #3b82f6',
   borderRadius: '12px 12px 0 0',
 }));
 
@@ -68,11 +74,12 @@ const ProjectDescription = styled(Typography)(({ theme }) => ({
   color: '#a0a0a0',
   lineHeight: 1.6,
   marginBottom: '20px',
-  flex: 1,
+  flexGrow: 1,
+  
 }));
 
 const TechChip = styled(Chip)(({ theme }) => ({
-  backgroundColor: '#4ade80',
+  backgroundColor: '#3b82f6',
   color: '#000000',
   fontSize: '0.8rem',
   fontWeight: 600,
@@ -87,24 +94,27 @@ const TechStack = styled(Box)(({ theme }) => ({
 }));
 
 const CodeButton = styled(Button)(({ theme }) => ({
-  color: '#4ade80',
+  color: '#3b82f6',
   textTransform: 'none',
   fontSize: '0.9rem',
   fontWeight: 500,
   padding: '5px 0',
   minWidth: 'auto',
   '&:hover': {
-    backgroundColor: 'rgba(74, 222, 128, 0.1)',
+    textDecoration: 'underline',
+    textDecorationColor: '#3b82f6',
+    backgroundColor: 'transparent',
   },
-}));
+}))as typeof Button;
 
 interface ProjectItemProps {
   title: string;
   description: string;
   technologies: string[];
+  github?: string;
 }
 
-const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technologies }) => (
+const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technologies, github }) => (
   <Grid item xs={12} md={4}>
     <ProjectCard>
       <ProjectImage />
@@ -116,10 +126,19 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technolog
             <TechChip key={index} label={tech} />
           ))}
         </TechStack>
+        {github && (
         <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
-          <GitHub sx={{ color: '#4ade80', fontSize: '18px', marginRight: '8px' }} />
-          <CodeButton>Code</CodeButton>
+          <GitHub sx={{ color: '#3b82f6', fontSize: '18px', marginRight: '8px' }} />
+          <CodeButton
+            component="a"
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Code
+            </CodeButton>
         </Box>
+        )}
       </CardContent>
     </ProjectCard>
   </Grid>
@@ -128,19 +147,23 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technolog
 const Projects: React.FC = () => {
   const projectsData = [
     {
-      title: 'Business Marketing Website',
-      description: 'A fully responsive platform built with HTML & CSS and integrated with payment gateways.',
-      technologies: ['CSS3', 'Node.js, PHP', 'HTML'],
+      title: 'Osipe Welfare Portal',
+      description: 'A savings group management system that allows users to create and manage savings groups, track contributions, and facilitate loans.',
+      technologies: ['python','React', 'Flask', 'PostreSQL'],
+      github: 'https://github.com/George-Okumu/Osiepe-welfare-front-end'
+
     },
     {
-      title: 'Upgradable Smart Contract',
-      description: 'A Rock, Paper, Scissors game smart contract that rewards the winner with ETH',
-      technologies: ['Solidity', 'npm'],
+      title: 'WellHall Hotel Booking',
+      description: ' A hotel booking platform that allows users to search for the rooms in the hotel, view details, and make reservations.',
+      technologies: ['Python', 'react', 'Flask', 'SQLite'],
+      github: 'https://github.com/Fred-riQ/WellHole'
     },
     {
-      title: 'Portfolio Website',
-      description: 'A modern, responsive portfolio website showcasing my skills and projects.',
-      technologies: ['HTML5'],
+      title: 'Habit Tracker Web app',
+      description: ' Users can create, track, and manage their daily habits, set reminders, and visualize their progress over time.',
+      technologies: ['React', 'javascript'],
+      github: 'https://github.com/LarryRuto98/HABIT-TRACKER-WEBSITE'
     },
   ];
 
@@ -149,7 +172,7 @@ const Projects: React.FC = () => {
       <ProjectsContent>
         <SectionTitle>My Projects</SectionTitle>
         <TitleUnderline />
-        <Grid container spacing={4}>
+        <Grid container spacing={6} direction="row" justifyContent="center" alignItems="stretch" wrap="nowrap">
           {projectsData.map((project, index) => (
             <ProjectItem key={index} {...project} />
           ))}

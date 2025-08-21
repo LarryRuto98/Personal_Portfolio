@@ -12,7 +12,7 @@ const SkillsSection = styled(Box)(({ theme }) => ({
   backgroundColor: '#0a0a0a',
   padding: '100px 40px',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'stretch',
   [theme.breakpoints.down('md')]: {
     padding: '80px 20px',
   },
@@ -57,6 +57,7 @@ const SkillCard = styled(Card)(({ theme }) => ({
   padding: '30px 20px',
   height: '160px',
   display: 'flex',
+  position: 'relative',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
@@ -110,10 +111,10 @@ const backendSkills = [
 ];
 
 const collaborativeTools = [
-  { icon: <SiJira size={24} color="#2684FF" />, name: "Jira" },
-  { icon: <FaTrello size={24} color="#026AA7" />, name: "Trello" },
-  { icon: <SiCanva size={24} color="#00C4CC" />, name: "Canva" },
-  { icon: <FaFigma size={24} color="#F24E1E" />, name: "Figma" },
+  { icon: <SiJira size={24} color="#3b82f6" />, name: "Jira" },
+  { icon: <FaTrello size={24} color="#3b82f6" />, name: "Trello" },
+  { icon: <SiCanva size={24} color="#3b82f6" />, name: "Canva" },
+  { icon: <FaFigma size={24} color="#3b82f6" />, name: "Figma" },
 ];
 const toolsSkills = [
   { icon: <AccountTree />, name: 'Git' },
@@ -124,37 +125,52 @@ const toolsSkills = [
 
 const Skills: React.FC = () => {
   return (
-    <SkillsSection id="skills">
+     <SkillsSection id="skills">
       <SkillsContent>
         <SectionTitle>My Skills</SectionTitle>
         <TitleUnderline />
 
-        <CategoryTitle>Frontend Development</CategoryTitle>
-        <Grid container spacing={3}>
-          {frontendSkills.map((skill, index) => (
-            <SkillItem key={index} icon={skill.icon} name={skill.name} />
-          ))}
-        </Grid>
+        {/* 2x2 grid for categories */}
+        <Grid container spacing={15}>
+          {/* Top Left - Frontend */}
+          <Grid item xs={12} md={4}>
+            <CategoryTitle>Frontend Development</CategoryTitle>
+            <Grid container spacing={1}>
+              {frontendSkills.map((skill, index) => (
+                <SkillItem key={index} icon={skill.icon} name={skill.name} />
+              ))}
+            </Grid>
+          </Grid>
 
-        <CategoryTitle>Backend Development</CategoryTitle>
-        <Grid container spacing={3}>
-          {backendSkills.map((skill, index) => (
-            <SkillItem key={index} icon={skill.icon} name={skill.name} />
-          ))}
-        </Grid>
+          {/* Top Right - Backend */}
+          <Grid item xs={12} md={4}>
+            <CategoryTitle>Backend Development</CategoryTitle>
+            <Grid container spacing={2}>
+              {backendSkills.map((skill, index) => (
+                <SkillItem key={index} icon={skill.icon} name={skill.name} />
+              ))}
+            </Grid>
+          </Grid>
 
-        <CategoryTitle>Collaborative tools</CategoryTitle>
-        <Grid container spacing={3}>
-          {collaborativeTools.map((skill, index) => (
-            <SkillItem key={index} icon={skill.icon} name={skill.name} />
-          ))}
-        </Grid>
+          {/* Bottom Left - Collaborative Tools */}
+          <Grid item xs={12} md={4}>
+            <CategoryTitle>Collaborative Tools</CategoryTitle>
+            <Grid container spacing={2}>
+              {collaborativeTools.map((skill, index) => (
+                <SkillItem key={index} icon={skill.icon} name={skill.name} />
+              ))}
+            </Grid>
+          </Grid>
 
-        <CategoryTitle>Tools & Others</CategoryTitle>
-        <Grid container spacing={3}>
-          {toolsSkills.map((skill, index) => (
-            <SkillItem key={index} icon={skill.icon} name={skill.name} />
-          ))}
+          {/* Bottom Right - Tools & Others */}
+          <Grid item xs={12} md={3}>
+            <CategoryTitle>Tools & Others</CategoryTitle>
+            <Grid container spacing={1}>
+              {toolsSkills.map((skill, index) => (
+                <SkillItem key={index} icon={skill.icon} name={skill.name} />
+              ))}
+            </Grid>
+          </Grid>
         </Grid>
       </SkillsContent>
     </SkillsSection>
