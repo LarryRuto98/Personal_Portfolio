@@ -119,8 +119,8 @@ const collaborativeTools = [
 const toolsSkills = [
   { icon: <AccountTree />, name: 'Git' },
   { icon: <Storage />, name: 'NPM' },
-  { icon: <Terminal />, name: 'Command Line' },
-  { icon: <DevicesOther />, name: 'Responsive Design' },
+  { icon: <Terminal />, name: 'Command\nLine' },
+  { icon: <DevicesOther />, name: 'Responsive\nDesign' },
 ];
 
 const Skills: React.FC = () => {

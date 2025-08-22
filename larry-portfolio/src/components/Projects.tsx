@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, Container, Grid, Card, CardContent, Chip, Button } from '@mui/material';
+import { Box, Typography, Container, Card, CardContent, Chip, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { GitHub } from '@mui/icons-material';
+import Grid from '@mui/material/Grid';
  
 
 
@@ -53,10 +54,12 @@ const ProjectCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const ProjectImage = styled(Box)(({ theme }) => ({
+const ProjectImage = styled(Box)<{ image: string }>(({ image }) => ({
   height: '300px',
-  backgroundImage: `url ("/WellHall_LandingPage.jpg")`,
-  backgroundSize: 'cover', // Replace with actual image path
+  width: '100%',
+  backgroundImage: `url(${image})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
   backgroundColor: '#0f0f0f',
   borderBottom: '2px solid #3b82f6',
   borderRadius: '12px 12px 0 0',
@@ -112,12 +115,13 @@ interface ProjectItemProps {
   description: string;
   technologies: string[];
   github?: string;
+  image: string
 }
 
-const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technologies, github }) => (
-  <Grid item xs={12} md={4}>
+const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technologies, github, image }) => (
+  <Grid  xs={12} md={4}>
     <ProjectCard>
-      <ProjectImage />
+      <ProjectImage image={image} />
       <CardContent sx={{ padding: '20px', display: 'flex', flexDirection: 'column', height: '100%' }}>
         <ProjectTitle>{title}</ProjectTitle>
         <ProjectDescription>{description}</ProjectDescription>
@@ -150,20 +154,23 @@ const Projects: React.FC = () => {
       title: 'Osipe Welfare Portal',
       description: 'A savings group management system that allows users to create and manage savings groups, track contributions, and facilitate loans.',
       technologies: ['python','React', 'Flask', 'PostreSQL'],
-      github: 'https://github.com/George-Okumu/Osiepe-welfare-front-end'
+      github: 'https://github.com/George-Okumu/Osiepe-welfare-front-end',
+      image: '/Osiepe.jpg'
 
     },
     {
       title: 'WellHall Hotel Booking',
       description: ' A hotel booking platform that allows users to search for the rooms in the hotel, view details, and make reservations.',
       technologies: ['Python', 'react', 'Flask', 'SQLite'],
-      github: 'https://github.com/Fred-riQ/WellHole'
+      github: 'https://github.com/Fred-riQ/WellHole',
+      image: '/WellHall_LandingPage.jpg'
     },
     {
       title: 'Habit Tracker Web app',
       description: ' Users can create, track, and manage their daily habits, set reminders, and visualize their progress over time.',
       technologies: ['React', 'javascript'],
-      github: 'https://github.com/LarryRuto98/HABIT-TRACKER-WEBSITE'
+      github: 'https://github.com/LarryRuto98/HABIT-TRACKER-WEBSITE',
+      image: '/Habit_Tracker.jpg'
     },
   ];
 
