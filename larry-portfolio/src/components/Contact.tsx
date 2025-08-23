@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Container, Grid, TextField, Button, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Email, Phone, LocationOn, GitHub, Instagram, Padding } from '@mui/icons-material';
-
+import{Snackbar, Alert } from "@mui/material"
 
 
 const ContactSection = styled(Box)(({ theme }) => ({
@@ -99,13 +99,15 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     '& fieldset': {
       borderColor: '#333333',
       gap: '40px',
+      borderRadius: '18px',
+      backgroundColor: '#',
       
     },
     '&:hover fieldset': {
-      borderColor: '#3b82f6',
+      borderColor: '#555555',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#3b82f6',
+      borderColor: '#333333',
     },
     '& input, & textarea': {
       color: 'white',
@@ -121,7 +123,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     color: '#a0a0a0',
   },
   '& .MuiInputLabel-root.Mui-focused': {
-    color: '#3b82f6',
+    color: '#a0a0a0',
   },
   minHeight: '24px',
   marginBottom: '20px',
@@ -186,7 +188,7 @@ const FooterBrand = styled(Box)(({ theme }) => ({
     color: '#ffffff',
     marginBottom: '5px',
     '& .highlight': {
-      color: '#4ade80',
+      color: '#3b82f6',
     },
   },
   '& .tagline': {
@@ -229,6 +231,11 @@ const Contact: React.FC = () => {
     subject: '',
     message: '',
   });
+const [toast, setToast] = useState({
+  open: false,
+  message: "",
+  severity: "success" as "success" | "error"
+})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -237,10 +244,28 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission logic here
+    try{
+      const response = await fetch("https://formspree.io/f/xwpqgzvr", {
+        method: "POST",
+        headers: {
+          Accept:"application/json"
+        },
+        body: new FormData(e.target as HTMLFormElement),
+      });
+      
+      if(response.ok){
+        setToast({open: true, message: "Message sent successfully!", severity: "success"});
+        setFormData({name: "", email: "", subject: "", message: ""});
+      } else{
+        setToast({open: true, message: "Failed to send message.", severity: "error"});
+      }
+    } catch(error){
+      console.error("Error submitting form:", error);
+      setToast({open:true, message:"something went wrong", severity: "error"})
+    }
+    
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -300,7 +325,12 @@ const Contact: React.FC = () => {
           </Grid>
           
           <Grid item xs={12} md={4}>
-            <Box component="form" onSubmit={handleSubmit}>
+            
+            <Box
+              component="form"
+              
+              onSubmit={handleSubmit}>
+              
               <StyledTextField
                 fullWidth
                 label="Your Name"
@@ -308,6 +338,7 @@ const Contact: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 variant="outlined"
+                required
               />
               <StyledTextField
                 fullWidth
@@ -317,6 +348,7 @@ const Contact: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 variant="outlined"
+                required
               />
               <StyledTextField
                 fullWidth
@@ -325,6 +357,7 @@ const Contact: React.FC = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 variant="outlined"
+                required
               />
               <StyledTextField
                 fullWidth
@@ -335,6 +368,7 @@ const Contact: React.FC = () => {
                 value={formData.message}
                 onChange={handleChange}
                 variant="outlined"
+                required
               />
               <SubmitButton type="submit">
                 Send Message
@@ -342,6 +376,21 @@ const Contact: React.FC = () => {
             </Box>
           </Grid>
         </Grid>
+        <Snackbar
+          open={toast.open}
+          autoHideDuration={4000}
+          onClose = {() => setToast({...toast, open: false})}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center"}}
+        >
+          <Alert
+            onClose ={() => setToast({...toast, open: false})}
+            severity={toast.severity}
+            sx={{width: "100%",...(toast.severity === "success" && { backgroundColor: "3b82f6", color: "#fff", "& .MuiAlert-icon": {color: "#fff"},}),
+          }}
+          >
+            {toast.message}
+          </Alert>
+        </Snackbar>
       </ContactContent>
 
       <Footer>

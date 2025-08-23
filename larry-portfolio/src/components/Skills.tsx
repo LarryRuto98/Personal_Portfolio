@@ -80,6 +80,7 @@ const SkillName = styled(Typography)(({ theme }) => ({
   fontSize: '1.1rem',
   fontWeight: 600,
   color: '#ffffff',
+  whiteSpace: 'pre-line',
 }));
 
 interface SkillItemProps {
@@ -111,10 +112,10 @@ const backendSkills = [
 ];
 
 const collaborativeTools = [
-  { icon: <SiJira size={24} color="#3b82f6" />, name: "Jira" },
-  { icon: <FaTrello size={24} color="#3b82f6" />, name: "Trello" },
-  { icon: <SiCanva size={24} color="#3b82f6" />, name: "Canva" },
-  { icon: <FaFigma size={24} color="#3b82f6" />, name: "Figma" },
+  { icon: <SiJira  color="#3b82f6" />, name: "Jira" },
+  { icon: <FaTrello  color="#3b82f6" />, name: "Trello" },
+  { icon: <SiCanva  color="#3b82f6" />, name: "Canva" },
+  { icon: <FaFigma  color="#3b82f6" />, name: "Figma" },
 ];
 const toolsSkills = [
   { icon: <AccountTree />, name: 'Git' },
@@ -133,7 +134,7 @@ const Skills: React.FC = () => {
         {/* 2x2 grid for categories */}
         <Grid container spacing={15}>
           {/* Top Left - Frontend */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <CategoryTitle>Frontend Development</CategoryTitle>
             <Grid container spacing={1}>
               {frontendSkills.map((skill, index) => (
@@ -143,7 +144,7 @@ const Skills: React.FC = () => {
           </Grid>
 
           {/* Top Right - Backend */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <CategoryTitle>Backend Development</CategoryTitle>
             <Grid container spacing={2}>
               {backendSkills.map((skill, index) => (
@@ -153,7 +154,7 @@ const Skills: React.FC = () => {
           </Grid>
 
           {/* Bottom Left - Collaborative Tools */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <CategoryTitle>Collaborative Tools</CategoryTitle>
             <Grid container spacing={2}>
               {collaborativeTools.map((skill, index) => (

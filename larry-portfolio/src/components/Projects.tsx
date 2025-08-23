@@ -40,12 +40,14 @@ const ProjectCard = styled(Card)(({ theme }) => ({
   backgroundColor: '#1a1a1a',
   border: '1px solid #333333',
   borderRadius: '12px',
-  height: '420px',
-  width: '100%',
+  height: '100%',
+  width: '100%', // Let Grid control width
+  minWidth: '320px', // Add a minWidth for consistency
+  maxWidth: '350px', // Add a maxWidth for consistency
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   alignItems: 'center',
   transition: 'transform 0.3s ease, border-color 0.3s ease',
   '&:hover': {
@@ -55,7 +57,7 @@ const ProjectCard = styled(Card)(({ theme }) => ({
 }));
 
 const ProjectImage = styled(Box)<{ image: string }>(({ image }) => ({
-  height: '300px',
+  height: '200px',
   width: '100%',
   backgroundImage: `url(${image})`,
   backgroundSize: 'cover',
@@ -78,6 +80,11 @@ const ProjectDescription = styled(Typography)(({ theme }) => ({
   lineHeight: 1.6,
   marginBottom: '20px',
   flexGrow: 1,
+  display: '-webkit-box',
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   
 }));
 
@@ -119,10 +126,10 @@ interface ProjectItemProps {
 }
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, technologies, github, image }) => (
-  <Grid  xs={12} md={4}>
+  <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
     <ProjectCard>
       <ProjectImage image={image} />
-      <CardContent sx={{ padding: '20px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <CardContent sx={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
         <ProjectTitle>{title}</ProjectTitle>
         <ProjectDescription>{description}</ProjectDescription>
         <TechStack>
@@ -168,7 +175,7 @@ const Projects: React.FC = () => {
     {
       title: 'Habit Tracker Web app',
       description: ' Users can create, track, and manage their daily habits, set reminders, and visualize their progress over time.',
-      technologies: ['React', 'javascript'],
+      technologies: ['React', 'javascript', 'HTML', 'CSS'],
       github: 'https://github.com/LarryRuto98/HABIT-TRACKER-WEBSITE',
       image: '/Habit_Tracker.jpg'
     },
@@ -179,7 +186,7 @@ const Projects: React.FC = () => {
       <ProjectsContent>
         <SectionTitle>My Projects</SectionTitle>
         <TitleUnderline />
-        <Grid container spacing={6} direction="row" justifyContent="center" alignItems="stretch" wrap="nowrap">
+        <Grid container spacing={6} direction="row" justifyContent="center" alignItems="stretch" >
           {projectsData.map((project, index) => (
             <ProjectItem key={index} {...project} />
           ))}
