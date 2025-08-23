@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        Hi, There <span className="highlight">Its Larry</span>
+        Hi There, <span className="highlight">It's Larry</span>
       </MainTitle>
 
       <Subtitle
