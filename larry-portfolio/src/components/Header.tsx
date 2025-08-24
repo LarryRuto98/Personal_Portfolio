@@ -1,10 +1,11 @@
 
-import { AppBar, Toolbar, Typography, Box, Button, List,ListItem,ListItemText, IconButton} from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Button, List,ListItem,ListItemText, IconButton, Modal} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import GridView from "@mui/icons-material/GridView";
 import MenuIcon from '@mui/icons-material/Menu';
 import React, { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
+import { padding } from '@mui/system';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -76,6 +77,16 @@ const Header: React.FC = () => {
 
   return (
     <StyledAppBar>
+      <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        borderBottom: '1px solid rgba(74, 222, 128, 0.1)',
+        backdropFilter: 'blur(10px)',
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+      }}
+      >
       <Toolbar sx={{ justifyContent: "space-between", padding: { xs: "0 16px", md: "0 40px" } }}>
         {/* Logo */}
         <Logo variant="h6">
@@ -107,10 +118,26 @@ const Header: React.FC = () => {
           <MenuIcon />
         </IconButton>
       </Toolbar>
+      </AppBar>
 
       {/* Mobile Drawer */}
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
-        <Box sx={{ width: 220, padding: 2 }}>
+      <Drawer
+       anchor="left" 
+       open={open} 
+       onClose={() => setOpen(false)}
+       ModalProps={{ keepMounted: true }}
+       slotProps={{
+        paper: {
+        sx:{
+          backgroundColor: '#111827',
+          color: '#ffffff',
+          width: 250,
+          paddingTop: 2,
+        },
+       },
+       }}
+       >
+        <Box role="presentation">
           <List>
             {navLinks.map((link) => (
               <ListItem button key={link.id} onClick={() => scrollToSection(link.id)}>
