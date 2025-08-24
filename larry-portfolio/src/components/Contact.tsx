@@ -88,11 +88,10 @@ const ContactValue = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
-  maxWidth: '60%',
-  minWidth: '2',
-  position: 'relative',
-  left: '400px',
-  bottom: '340px',
+  width: '100%',
+  maxWidth: '600px',
+  margin: "0 auto 20px auto",
+  display: 'block',
   '& .MuiOutlinedInput-root': {
     backgroundColor: '#1a1a1a',
     borderRadius: '18px',
@@ -111,7 +110,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     },
     '& input, & textarea': {
       color: 'white',
-      Padding: '9px 8px',
+      padding: '9px 8px',
       fontSize: '0.95rem',
       backgroundColor: 'transparent',
       
@@ -125,8 +124,10 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputLabel-root.Mui-focused': {
     color: '#a0a0a0',
   },
-  minHeight: '24px',
-  marginBottom: '20px',
+  [theme.breakpoints.down("sm")]:{
+    maxWidth:"100%"
+  },
+  
 }));
 
 const SubmitButton = styled(Button)(({ theme }) => ({
@@ -139,7 +140,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
   textTransform: 'none',
   borderRadius: '8px',
   position: 'relative',
-  bottom: '140px',
+
   '&:hover': {
     backgroundColor: '#1d4ed8',
   },
@@ -280,15 +281,24 @@ const [toast, setToast] = useState({
       <ContactContent>
         <SectionTitle>Get In Touch</SectionTitle>
         <TitleUnderline />
-        
-        <Grid container spacing={6}>
-          <Grid item xs={12} md={6}>
+        {/* Use flexbox for side-by-side layout on desktop */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+            gap: { xs: 4, md: 8 },
+            width: '100%',
+          }}
+        >
+          {/* Left: Contact Info */}
+          <Box sx={{ flex: 1, minWidth: 280 }}>
             <ContactInfo>
               <InfoTitle>Contact Information</InfoTitle>
               <InfoDescription>
                 I’d love to hear from you! Whether it’s an inquiry, a collaboration, or an exciting opportunity, feel free to reach out. I’m always open to discussing new projects, exploring creative ideas, and contributing my skills to bring your vision to life
               </InfoDescription>
-              
               <ContactItem>
                 <Email />
                 <Box>
@@ -296,7 +306,6 @@ const [toast, setToast] = useState({
                   <ContactValue>larryruto@gmail.com</ContactValue>
                 </Box>
               </ContactItem>
-              
               <ContactItem>
                 <Phone />
                 <Box>
@@ -304,7 +313,6 @@ const [toast, setToast] = useState({
                   <ContactValue>+254 798981782</ContactValue>
                 </Box>
               </ContactItem>
-              
               <ContactItem>
                 <LocationOn />
                 <Box>
@@ -312,25 +320,24 @@ const [toast, setToast] = useState({
                   <ContactValue>Nairobi, Kenya</ContactValue>
                 </Box>
               </ContactItem>
-
-              <SocialIcons>
-                <SocialIcon component="a" href="https://github.com/LarryRuto98" target="_blank" aria-label="GitHub">
-                  <GitHub />
-                </SocialIcon>
-                <SocialIcon component="a" href="https://instagram.com/larry_ruto" target="_blank" aria-label="Instagram">
-                  <Instagram />
-                </SocialIcon>
-              </SocialIcons>
+              
             </ContactInfo>
-          </Grid>
-          
-          <Grid item xs={12} md={4}>
-            
+          </Box>
+          {/* Right: Form and Submit Button */}
+          <Box
+            sx={{
+              flex: 1,
+              minWidth: 280,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+            }}
+          >
             <Box
               component="form"
-              
-              onSubmit={handleSubmit}>
-              
+              onSubmit={handleSubmit}
+              sx={{ width: '100%', maxWidth: '450px' }}
+            >
               <StyledTextField
                 fullWidth
                 label="Your Name"
@@ -339,6 +346,7 @@ const [toast, setToast] = useState({
                 onChange={handleChange}
                 variant="outlined"
                 required
+                sx={{mb: 2}}
               />
               <StyledTextField
                 fullWidth
@@ -349,6 +357,7 @@ const [toast, setToast] = useState({
                 onChange={handleChange}
                 variant="outlined"
                 required
+                sx={{mb: 2}}
               />
               <StyledTextField
                 fullWidth
@@ -358,6 +367,7 @@ const [toast, setToast] = useState({
                 onChange={handleChange}
                 variant="outlined"
                 required
+                sx={{mb: 2}}
               />
               <StyledTextField
                 fullWidth
@@ -369,13 +379,16 @@ const [toast, setToast] = useState({
                 onChange={handleChange}
                 variant="outlined"
                 required
+                sx={{ mb: 2 }}
               />
-              <SubmitButton type="submit">
-                Send Message
-              </SubmitButton>
+              
+                <SubmitButton type="submit" sx={{width: '50%', mt: 2, mb: 4}}>
+                  Send Message
+                </SubmitButton>
+              
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
         <Snackbar
           open={toast.open}
           autoHideDuration={4000}
