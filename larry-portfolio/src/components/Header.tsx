@@ -1,7 +1,10 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
+
+import { AppBar, Toolbar, Typography, Box, Button, List,ListItem,ListItemText, IconButton} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import GridView from "@mui/icons-material/GridView";
+import MenuIcon from '@mui/icons-material/Menu';
+import React, { useState } from 'react';
+import Drawer from '@mui/material/Drawer';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -54,35 +57,69 @@ const CustomGridIcon = styled(Box)(({ theme }) => ({
 }));
 
 const Header: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setOpen(false)
   };
+  const navLinks = [
+    { label: 'Home', id: 'home' },
+    { label: 'About', id: 'about' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Contact', id: 'contact' },
+  ]
 
   return (
     <StyledAppBar>
-      <Toolbar sx={{ justifyContent: 'space-between', padding: { xs: '0 16px', md: '0 40px' } }}>
+      <Toolbar sx={{ justifyContent: "space-between", padding: { xs: "0 16px", md: "0 40px" } }}>
+        {/* Logo */}
         <Logo variant="h6">
-        <Box component="span" sx={{ color: "#3B82F6", fontWeight: "bold" }}>
-           LarryThe
-           </Box>Dev
-      </Logo>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <NavButton onClick={() => scrollToSection('home')}>Home</NavButton>
-            <NavButton onClick={() => scrollToSection('about')}>About</NavButton>
-            <NavButton onClick={() => scrollToSection('skills')}>Skills</NavButton>
-            <NavButton onClick={() => scrollToSection('projects')}>Projects</NavButton>
-            <NavButton onClick={() => scrollToSection('contact')}>Contact</NavButton>
+          <Box component="span" sx={{ color: "#3B82F6", fontWeight: "bold" }}>
+            LarryThe
           </Box>
+          Dev
+        </Logo>
+
+        {/* Desktop Navigation */}
+        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: "20px" }}>
+          {navLinks.map((link) => (
+            <NavButton key={link.id} onClick={() => scrollToSection(link.id)}>
+              {link.label}
+            </NavButton>
+          ))}
           <CustomGridIcon>
             <GridView />
           </CustomGridIcon>
         </Box>
+
+        {/* Mobile Hamburger */}
+        <IconButton
+          edge="end"
+          color="inherit"
+          sx={{ display: { xs: "block", md: "none" } }}
+          onClick={() => setOpen(true)}
+        >
+          <MenuIcon />
+        </IconButton>
       </Toolbar>
+
+      {/* Mobile Drawer */}
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+        <Box sx={{ width: 220, padding: 2 }}>
+          <List>
+            {navLinks.map((link) => (
+              <ListItem button key={link.id} onClick={() => scrollToSection(link.id)}>
+                <ListItemText primary={link.label} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </StyledAppBar>
   );
 };
