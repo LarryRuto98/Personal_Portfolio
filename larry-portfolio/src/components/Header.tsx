@@ -10,7 +10,6 @@ import Drawer from '@mui/material/Drawer';
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: 'transparent',
   backdropFilter: 'blur(10px)',
-  borderBottom: '1px solid rgba(59, 130, 246, 0.1)',
   boxShadow: 'none',
   position: 'fixed',
   top: 0,
@@ -82,7 +81,7 @@ const Header: React.FC = () => {
       sx={{
         backgroundColor: 'transparent',
         boxShadow: 'none',
-        borderBottom: '1px solid rgba(74, 222, 128, 0.1)',
+        borderBottom: '1px solid rgba(59, 130, 246, 0.1)',
         backdropFilter: 'blur(10px)',
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
