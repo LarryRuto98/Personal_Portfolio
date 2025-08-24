@@ -107,7 +107,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
       borderColor: '#555555',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#333333',
+      borderColor: '#3b82f6',
     },
     '& input, & textarea': {
       color: 'white',
@@ -290,7 +290,7 @@ const [toast, setToast] = useState({
       <ContactContent>
         <SectionTitle>Get In Touch</SectionTitle>
         <TitleUnderline />
-        {/* Use flexbox for side-by-side layout on desktop */}
+        
         <Box
           sx={{
             display: 'flex',
@@ -301,7 +301,7 @@ const [toast, setToast] = useState({
             width: '100%',
           }}
         >
-          {/* Left: Contact Info */}
+         
           <Box sx={{ flex: 1, minWidth: 280 }}>
             <ContactInfo>
               <InfoTitle>Contact Information</InfoTitle>
@@ -332,7 +332,7 @@ const [toast, setToast] = useState({
               
             </ContactInfo>
           </Box>
-          {/* Right: Form and Submit Button */}
+          
           <Box
             sx={{
               flex: 1,
