@@ -3,6 +3,7 @@ import { Box, Typography, Container, Grid, TextField, Button, IconButton } from 
 import { styled } from '@mui/material/styles';
 import { Email, Phone, LocationOn, GitHub, Instagram, Padding } from '@mui/icons-material';
 import{Snackbar, Alert } from "@mui/material"
+import { justifyContent } from '@mui/system';
 
 
 const ContactSection = styled(Box)(({ theme }) => ({
@@ -214,6 +215,14 @@ const FooterNav = styled(Box)(({ theme }) => ({
     '&:hover': {
       color: '#3b82f6',
       backgroundColor: 'transparent',
+    },
+  },
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& button': {
+      justifyContent: 'center',
+      marginTop: '0',
     },
   },
 }));
