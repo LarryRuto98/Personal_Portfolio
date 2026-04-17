@@ -128,7 +128,7 @@ const Header: React.FC = () => {
        slotProps={{
         paper: {
         sx:{
-          backgroundColor: '#111827',
+          backgroundColor: '#0f172a',
           color: '#ffffff',
           width: 250,
           paddingTop: 2,

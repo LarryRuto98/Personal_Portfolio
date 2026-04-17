@@ -71,7 +71,7 @@ const About: React.FC = () => {
         <TitleUnderline />
         
         <AboutText>
-          Hi, I am a passionate Software Engineer with a strong foundation in Python, JavaScript, React, and Flask, as well as experience working with SQL databases and modern web development tools.I recently graduated from Moringa School, where I honed my skills in building full-stack applications, problem solving, and collaborating on real-world projects.
+          Hi, I am a passionate Software Engineer with a strong foundation in Python, JavaScript, React, and Flask, as well as experience working with SQL databases and modern web development tools.
         </AboutText>
         
         <AboutText>
